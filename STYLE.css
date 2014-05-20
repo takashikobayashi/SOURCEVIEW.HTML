@@ -1,0 +1,44 @@
+/* Source View | SyntaxHighlirhter | JavaScript, html5 and CSS3 Study | (c) 2014 twitter@sumo_ninja_jp
+*/
+
+body,
+header,
+footer,
+p,
+ul,
+li,
+h1,
+h2,
+h3 {
+ font-family: 'Open Sans', sans-serif;
+ color: gray;
+ text-wrap: unrestricted;
+ white-space: normal;
+ word-break: break-all;
+ word-wrap: break-word;
+}
+body,
+html {
+ height: 100%;
+}
+
+/* Overwrite Syntax Highlighter CSS
+*/
+
+.syntaxhighlighter table td.code .line {
+ font-size: 0.6rem ! important;
+ line-height: 1rem ! important;
+ height: 1rem ! important;
+}
+.syntaxhighlighter table td.gutter .line {
+ font-size: 0.6rem ! important;
+ line-height: 1rem ! important;
+ height: 1rem ! important;
+}
+.syntaxhighlighter table {
+ margin:5px ! important;
+ border:solid 1px #EEE ! important;
+}
+.syntaxhighlighter .line.alt2 {
+ background-color: #F8F8F8 ! important;
+}
