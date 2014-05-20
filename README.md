@@ -6,12 +6,12 @@ Title, url and files are set as Request Parameters.
 
 
 Parameter Form: JSON, UTF-8, URI encoded.  
-    {
-        title:&lt;string&gt;,  
-        url:&lt;string>,  
+    {  
+        title:<<string>>,  
+        url:<<string>>,  
         files:[{  
-            name:&lt;string>,  
-            brush:&lt;string>,  
-            title:<<string>  
+            name:<<string>>,  
+            brush:<<string>>,  
+            title:<<string>>  
         }]  
     }
