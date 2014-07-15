@@ -9,7 +9,7 @@ function SourceViewModel( $scope, $http,$q ) {
   }
 
   var obj = JSON.parse( decodeURIComponent( param ) );
-  var files=[];
+  var files={};
 
   if( obj.entry !== undefined ) {
     $http.get( obj.url + obj.entry ).then( function( res ) {
@@ -36,21 +36,23 @@ function SourceViewModel( $scope, $http,$q ) {
     var i;
     var ds = [];
     for( i = 0; i < $scope.sv_files.length; i++ ) {
-      ds.push( $http.get( $scope.sv_url + $scope.sv_files[i].name ) );
+      ds.push( $http.get( $scope.sv_url + $scope.sv_files[i].name ).then( function( obj ) {
+        var d = $q.defer();
+        var t = obj.config.url.substring( obj.config.url.lastIndexOf( "/" ) + 1 );
+        files[t] = obj.data;
+        d.resolve( obj.data );
+        return d.promise;
+      } ) );
     }
     $q.all( ds ).then( function( res ){
-      var j;
-      for( j = 0; j < res.length; j++ ) {
-        files.push( res[j].data );
-      }
       setHighlight();
     } );
-  };
+  }
 
   function setHighlight() {
     var i;
-    for( i = 0; i < files.length; i++ ) {
-      angular.element( "pre[title='" + $scope.sv_files[i].title + "']" ).text( files[i] );
+    for( i = 0; i < $scope.sv_files.length; i++ ) {
+      angular.element( "pre[title='" + $scope.sv_files[i].title + "']" ).text( files[$scope.sv_files[i].name] );
     }
 
      SyntaxHighlighter.highlight();
