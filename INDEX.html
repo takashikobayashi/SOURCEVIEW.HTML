@@ -40,7 +40,7 @@
     </div>
     <div class="collapse navbar-collapse" id="nav-menu">
       <ul class="nav navbar-nav" ng-repeat="file in sv_files">
-        <li><a href="#{{nomalize(file.title)}}">{{file.title}}</a></li>
+        <li><a href="#{{normalize(file.title)}}">{{file.title}}</a></li>
       </ul>
     </div>
   </div>
@@ -51,7 +51,7 @@
   <h3>{{sv_url}}</h3>
   <div id="sv_src" ng-if="sv_files.length > 0">
     <div ng-repeat="file in sv_files">
-      <div id="{{nomalize(file.title)}}">
+      <div id="{{normalize(file.title)}}">
         <pre title="{{file.title}}" class="brush:{{file.brush}}">{{file.data}}</pre>
       </div>
     </div>
