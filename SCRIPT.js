@@ -61,7 +61,7 @@ obj.data;
     $( "body" ).scrollspy( "refresh" );
   };
 
-  $scope.nomalize = function( f ) {
+  $scope.normalize = function( f ) {
     return f.replace( ".", "" );
   };
 }
