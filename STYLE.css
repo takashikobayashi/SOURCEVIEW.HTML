@@ -1,4 +1,4 @@
-/* Source View | SyntaxHighlirhter, jQuery, AngularJS | JavaScript, html5, CSS3 Study | (c) 2014 twitter@sumo_ninja_jp
+/* Source View | SyntaxHighlirhter, jQuery, AngularJS, Bootstrap | JavaScript, html5, CSS3 Study | (c) 2014 twitter@sumo_ninja_jp
 */
 
 body,
@@ -20,6 +20,10 @@ h3 {
 body,
 html {
  height: 100%;
+}
+body {
+ padding-top: 70px;
+ position: relative;
 }
 
 /* Overwrite Syntax Highlighter CSS
