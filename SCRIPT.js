@@ -1,4 +1,4 @@
-/* Source View | SyntaxHighlirhter, jQuery, AngularJS | JavaScript, html5, CSS3 Study | (c) 2014 twitter@sumo_ninja_jp
+/* Source View | SyntaxHighlirhter, jQuery, AngularJS, Bootstrap | JavaScript, html5, CSS3 Study | (c) 2014 twitter@sumo_ninja_jp
 */
 
 function SourceViewModel( $scope, $http,$q ) {
@@ -39,7 +39,8 @@ function SourceViewModel( $scope, $http,$q ) {
       ds.push( $http.get( $scope.sv_url + $scope.sv_files[i].name ).then( function( obj ) {
         var d = $q.defer();
         var t = obj.config.url.substring( obj.config.url.lastIndexOf( "/" ) + 1 );
-        files[t] = obj.data;
+        files[t] = 
+obj.data;
         d.resolve( obj.data );
         return d.promise;
       } ) );
@@ -55,6 +56,12 @@ function SourceViewModel( $scope, $http,$q ) {
       angular.element( "pre[title='" + $scope.sv_files[i].title + "']" ).text( files[$scope.sv_files[i].name] );
     }
 
-     SyntaxHighlighter.highlight();
+    SyntaxHighlighter.highlight();
+
+    $( "body" ).scrollspy( "refresh" );
+  };
+
+  $scope.nomalize = function( f ) {
+    return f.replace( ".", "" );
   };
 }
