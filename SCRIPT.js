@@ -1,4 +1,4 @@
-/* Source View | SyntaxHighlirhter, jQuery, AngularJS | JavaScript, html5, CSS3 Study | (c) 2014 twitter@sumo_ninja_jp
+/* Source View | SyntaxHighlirhter, jQuery, AngularJS, Bootstrap | JavaScript, html5, CSS3 Study | (c) 2014 twitter@sumo_ninja_jp
 */
 
 function SourceViewModel( $scope, $http,$q ) {
@@ -56,5 +56,11 @@ function SourceViewModel( $scope, $http,$q ) {
     }
 
      SyntaxHighlighter.highlight();
+
+    $( "body" ).scrollspy( "refresh" );
+  };
+
+  $scope.normalize = function( f ) {
+    return f.replace( ".", "" );
   };
 }
