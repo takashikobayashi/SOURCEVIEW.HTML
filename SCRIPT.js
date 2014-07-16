@@ -2,27 +2,14 @@
 */
 
 function SourceViewModel( $scope, $http,$q ) {
-
-var u = "http://dl.dropboxusercontent.com/u/135100373/Study/201407106/";
-var e = "sventry.json";
-var p = encodeURIComponent( JSON.stringify( {"url":u,"entry":e} ) );
-
-  var param = 
-//"%7B%22title%22%3A%22yyyymmdd%20-%20some%20title%22%2C%22url%22%3A%22https%3A%2F%2Fdl.dropboxusercontent.com%2Fu%2F135100373%2FStudy%2F201405238%2F%22%2C%22exec%22%3A%22index.html%22%2C%22files%22%3A%5B%7B%22name%22%3A%22Style.css%22%2C%22brush%22%3A%22css%22%2C%22title%22%3A%22Style.css%22%7D%5D%7D";
-
-p;
-/*
-window.location.search.substring( 1 );
+  var param = window.location.search.substring( 1 );
   if( param === undefined || param.length <= 0 ) {
     $scope.sv_title = "No parameters.";
     return;
   }
-*/
 
   var obj = JSON.parse( decodeURIComponent( param ) );
   var files={};
-
-alert("there: "+JSON.stringify(obj));
 
   if( obj.entry !== undefined ) {
     $http.get( obj.url + obj.entry ).then( function( res ) {
@@ -34,8 +21,6 @@ alert("there: "+JSON.stringify(obj));
   }
 
   function setEntry( obj ) {
-alert("here: "+JSON.stringify(obj));
-
     $scope.sv_title = obj.title;
     $scope.sv_url = obj.url;
     $scope.sv_files = obj.files;
@@ -70,7 +55,7 @@ alert("here: "+JSON.stringify(obj));
       angular.element( "pre[title='" + $scope.sv_files[i].title + "']" ).text( files[$scope.sv_files[i].name] );
     }
 
-    SyntaxHighlighter.highlight();
+     SyntaxHighlighter.highlight();
 
     $( "body" ).scrollspy( "refresh" );
   };
