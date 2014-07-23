@@ -1,4 +1,4 @@
-/* Source View | SyntaxHighlirhter, jQuery, AngularJS | JavaScript, html5, CSS3 Study | (c) 2014 twitter@sumo_ninja_jp
+/* Source View | SyntaxHighlirhter, jQuery, AngularJS, Bootstrap | JavaScript, html5, CSS3 Study | (c) 2014 twitter@sumo_ninja_jp
 */
 
 function SourceViewModel( $scope, $http,$q ) {
@@ -9,8 +9,7 @@ function SourceViewModel( $scope, $http,$q ) {
   }
 
   var obj = JSON.parse( decodeURIComponent( param ) );
-  var files={};
-
+  var fileindex={};
   if( obj.entry !== undefined ) {
     $http.get( obj.url + obj.entry ).then( function( res ) {
       setEntry( res.data );
@@ -36,11 +35,13 @@ function SourceViewModel( $scope, $http,$q ) {
     var i;
     var ds = [];
     for( i = 0; i < $scope.sv_files.length; i++ ) {
+      fileindex[$scope.sv_files[i].name] = i;
       ds.push( $http.get( $scope.sv_url + $scope.sv_files[i].name ).then( function( obj ) {
         var d = $q.defer();
         var t = obj.config.url.substring( obj.config.url.lastIndexOf( "/" ) + 1 );
-        files[t] = obj.data;
+        $scope.sv_files[fileindex[t]].data = obj.data;
         d.resolve( obj.data );
+
         return d.promise;
       } ) );
     }
@@ -50,11 +51,13 @@ function SourceViewModel( $scope, $http,$q ) {
   }
 
   function setHighlight() {
-    var i;
-    for( i = 0; i < $scope.sv_files.length; i++ ) {
-      angular.element( "pre[title='" + $scope.sv_files[i].title + "']" ).text( files[$scope.sv_files[i].name] );
-    }
+    $scope.$apply();
+    SyntaxHighlighter.highlight();
 
-     SyntaxHighlighter.highlight();
+    $( "body" ).scrollspy( "refresh" );
+  };
+
+  $scope.normalize = function( f ) {
+    return f.replace( ".", "" );
   };
 }
